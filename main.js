@@ -1,6 +1,3 @@
-/*
-  Here is a rough idea for the steps you could take:
-*/
 
 // 1. First select and store the elements you'll be working with
 // 2. Create your `submit` event for getting the user's search term
@@ -15,23 +12,32 @@ const baseUrl = 'https://itunes.apple.com/';
 
 //=============== #2 SUBMIT EVENT =======================//
 searchForm.onsubmit = function () {
+  event.preventDefault();
 
 
 }; //end onsumbit fn
 
 //=============== #3 FETCH DATA =======================//
-let search_iTunes = function(inputWords) {
+function search_iTunes () {
  return fetch(`${baseUrl}search?term=jack+johnson`)
    .then(function(response) {
      return response.json();
-       // console.log(data);
  })
 }
 console.log(search_iTunes());
 
-//=============== #4 APPEND RESULTS =======================//
-
-
+//=============== #4 CREATE CARDS RESULTS =======================//
+function makeArtistHTML (artist) {
+  return `
+  <section class="song">
+    <a href="${results.previewUrl}">
+      <img src="${results.artworkUrl100}" alt="${results.artistName}Picture">
+      <h5>${results.collectionName}</h5>
+      <h4>${results.artistName}</h4>
+    </a>
+  </section>
+  `
+}
 
 
 // ---------------- fin ---------------------//
