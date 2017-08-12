@@ -6,25 +6,32 @@
 </head>
 <body>
   <div class="container">
-  <div class="headerExpanded">
-    <header>
-      <h1>Really Awesome Music Site</h1>
-    </header>
 
-    <section class="player">
-      <audio class="music-player" controls="controls" src=""></audio>
+  <!-- === HEADER - WHOLE === -->
+    <div class="headerExpanded">
+      <header>
+        <h1>A Really Awesome Music Site</h1>
+      </header>
+      <!-- player controls -->
+      <section class="player">
+        <audio class="music-player"   controls="controls" src=""></audio>
+      </section>
+      <!-- search form -->
+      <section class="search">
+        <form class="search-form">
+          <input type="text" name="searchTerm">
+          <input type="submit" value="Search iTunes">
+        </form>
+      </section>
+
+    </div> <!-- end "headerExpanded" -->
+
+  <!-- === MAIN CONTENT === -->
+    <section class="results">
+      <!-- content appended form main.js -->
     </section>
 
-    <section class="search">
-      <form class="search-form">
-        Search iTunes:
-        <input type="text" name="searchTerm">
-        <input type="submit">
-      </form>
-    </section>
-  </div>
-    <section class="results"></section>
-  </div>
+  </div> <!--end "container"-->
   <script src="main.js"></script>
 </body>
 </html>

@@ -1,10 +1,81 @@
 body {
   background-color: #60d9f1;
 }
+/*eg*/
+/*@font-face {
+  font-family: digital-7;
+  src: url('digital-7/digital-7.ttf');
+  }
+  <style>
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One|Fascinate+Inline|Monoton|Special+Elite');
+</style>
+  font-family: 'Monoton', cursive;
+  font-family: 'Special Elite', cursive;
+  font-family: 'Black Ops One', cursive;
+  font-family: 'Fascinate Inline', cursive;*/
 /*http://data.whicdn.com/images/18514596/large.jpg*/
+@font-face {
+  font-family: 'Monoton';
+  src: url('Monoton/Monoton-Regular.ttf');
+}
+@font-face {
+  font-family: 'Special Elite';
+  src: url('Special_Elite/SpecialElite.ttf');
+}
 .headerExpanded {
-  background-image: url('https://ak5.picdn.net/shutterstock/videos/7969927/thumb/1.jpg');
+  background-image: url('https://ak5.picdn.net/shutterstock/videos/7969927/thumb/1.jpg'); background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
   width: 90%;
   margin: 2em auto;
-  min-height: 50em;
+  min-height: 25em;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-family: 'Monoton', cursive;
+  font-size: 4em;
+  margin-top: 0;
+}
+audio {
+  width: 25em;
+}
+.search-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+input[type=text] {
+  width: 20em;
+  height: 2em;
+  font-size: 1.5em;
+  font-family: 'Special Elite';
+  text-align: center;
+}
+input[type=text]:focus {
+  outline-style: none;
+  background-color: #000;
+  color: #fff;
+}
+input[type=submit] {
+    padding:1em 1em;
+    background:#fff;
+    border:0 none;
+    cursor:pointer;
+    font-family: 'Special Elite';
+    font-size: 1em;
+    border-radius: 5px;
+    margin-top: .5em;
+}
+input[type=submit]:hover {
+  background-color: #gray:
+}
+input[type=submit]:active {
+  background-color: #000;
+  color: #fff;
+}
+input[type=submit]:focus {
+  outline-style: none;
 }
