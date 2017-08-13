@@ -6,63 +6,76 @@
 // 5. Create a way to listen for a click that will play the song in the audio play
 
 //=============== ELEMENTS =======================//
-const results = document.querySelector('.results');
+
 const searchForm = document.querySelectorAll('form')[0];
 const baseUrl = 'https://itunes.apple.com/';
 // let tempSearch = 'jack johnson';
 // let tempResults = [];
-const loopArray = [];
+let loopArray = [];
+let searchWords = '';
+// const band = 'metallica';
 //=============== FETCH DATA fn =======================//
-function search_iTunes (item) {
- return fetch(`${baseUrl}search?term=${item}`)
-   .then(function(response) {
-     return response.json();
-     loopArray = results.results;
-     return loopArray;
- })
+
+
+
+let search_iTunes = function () {
+  return fetch(`${baseUrl}search?term=${searchWords}`)
+    .then(function(response) {
+      return response.json();
+    })
+    .catch(function (err) {
+          console.log(err)
+    })
 }
-console.log("search_iTunes ==> " + search_iTunes());
-console.log("CL for const loopArray ==> " + loopArray);
+
+// console.log(search_iTunes());
+// console.log("CL for const loopArray ==> " + loopArray);
 //=============== CREATE 1 SONG fn =======================//
-function make1songHTML (song) {
+let make1songHTML = function (song) {
   return `
   <section class="song">
-    <a href="${results.previewUrl}">
-      <img src="${results.artworkUrl100}" alt="${results.artistName}Picture">
-      <h5>${results.collectionName}</h5>
-      <h4>${results.artistName}</h4>
+    <a href="${song.previewUrl}">
+      <img src="${song.artworkUrl100}" alt="${song.artistName}Picture">
+      <h5>${song.collectionName}</h5>
+      <h4>${song.artistName}</h4>
     </a>
   </section>
   `
 }
-
 //=============== LOOP CREATE SONGS fn =======================//
-function makeSongsHTML (songs) {
+let makeSongsHTML = function (songs) {
     let html = '';
-    for (let i in loopArray) {
+  for (let i in loopArray) {
       html += make1songHTML(song);
     }
   return html;
 }
-console.log("makeSongsHTML ==> " + makeSongsHTML());
+
 //=============== LOOP CREATE SONGS fn =======================//
-function addSongsToDom (songsData) {
-  results.innerHTML = makeSongsHTML(songsData);
+let addSongsToDom = function  (songsData) {
+  const artistResult = document.querySelector('.artistResult');
+  artistResult.innerHTML = makeSongsHTML(songsData);
 }
 
 //=============== SUBMIT EVENT CALL fn's CREATE PAGE  =======================//
-searchForm.onsubmit = function (event) {
+searchForm.onsubmit = function () {
   event.preventDefault();
 
-  const searchWords = event.target.querySelector('input[name="searchTerm"]').value
+  searchWords = event.target.querySelector('input[name="searchTerm"]').value
     console.log("const searchWords in final call ==> " + searchWords);
+    console.log(search_iTunes(searchWords));
+
 
   search_iTunes(searchWords).then(function(results){
-    addSongsToDom(results);
+    // addSongsToDom(results);
+    console.log("results.results below: ");
+    console.log(results.results);
+    loopArray = results.results;
+    console.log(loopArray[0].artistName);
   })
 
-}; //end onsumbit fn
 
+}; //end onsumbit fn
 
 
 
