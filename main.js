@@ -1,24 +1,12 @@
-
-// 1. First select and store the elements you'll be working with
-// 2. Create your `submit` event for getting the user's search term
-// 3. Create your `fetch` request that is called after a submission
-// 4. Create a way to append the fetch results to your page
-// 5. Create a way to listen for a click that will play the song in the audio play
-
 //=============== ELEMENTS =======================//
-
 const searchForm = document.querySelectorAll('form')[0];
 const baseUrl = 'https://itunes.apple.com/';
-// let tempSearch = 'jack johnson';
-// let tempResults = [];
 let loopArray = [];
 let searchWords = '';
-// const band = 'metallica';
+
+
 //=============== FETCH DATA fn =======================//
-
-
-
-let search_iTunes = function () {
+function search_iTunes () {
   return fetch(`${baseUrl}search?term=${searchWords}`)
     .then(function(response) {
       return response.json();
@@ -28,33 +16,32 @@ let search_iTunes = function () {
     })
 }
 
-// console.log(search_iTunes());
-// console.log("CL for const loopArray ==> " + loopArray);
-//=============== CREATE 1 SONG fn =======================//
-let make1songHTML = function (song) {
+//=============== CREATE 1 SONG to HTML fn =======================//
+function make1songHTML (artistArray) {
   return `
   <section class="song">
-    <a href="${song.previewUrl}">
-      <img src="${song.artworkUrl100}" alt="${song.artistName}Picture">
-      <h5>${song.collectionName}</h5>
-      <h4>${song.artistName}</h4>
-    </a>
+      <img src="${artistArray.artworkUrl100}" alt="${artistArray.artistName}Picture">
+      <h5 class="trackName" >
+      <button type="submit" data-songUrl="${artistArray.previewUrl}">${artistArray.trackName}</button>
+      </h5>
+      <h4>${artistArray.artistName}</h4>
   </section>
   `
 }
-//=============== LOOP CREATE SONGS fn =======================//
-let makeSongsHTML = function (songs) {
+
+//=============== LOOP CREATE SONGS fn from make1songHTML =======================//
+function makeSongsHTML () {
     let html = '';
   for (let i in loopArray) {
-      html += make1songHTML(song);
+      html += make1songHTML(loopArray[i]);
     }
   return html;
 }
 
-//=============== LOOP CREATE SONGS fn =======================//
-let addSongsToDom = function  (songsData) {
+//=============== APPEND SONGS TO DOM fn =======================//
+function addSongsToDom () {
   const artistResult = document.querySelector('.artistResult');
-  artistResult.innerHTML = makeSongsHTML(songsData);
+  artistResult.innerHTML = makeSongsHTML(loopArray);
 }
 
 //=============== SUBMIT EVENT CALL fn's CREATE PAGE  =======================//
@@ -62,23 +49,29 @@ searchForm.onsubmit = function () {
   event.preventDefault();
 
   searchWords = event.target.querySelector('input[name="searchTerm"]').value
-    console.log("const searchWords in final call ==> " + searchWords);
-    console.log(search_iTunes(searchWords));
 
+  search_iTunes(searchWords).then(function(data){
+    loopArray = data.results;
+    addSongsToDom(loopArray);
 
-  search_iTunes(searchWords).then(function(results){
-    // addSongsToDom(results);
-    console.log("results.results below: ");
-    console.log(results.results);
-    loopArray = results.results;
-    console.log(loopArray[0].artistName);
+//start event LISTENER 'click' -- onclick
+const button = document.querySelectorAll('button[type="submit"]')
+
+  for (let i in button) {
+    button[i].onclick = function() {
+
+      const audioControls = document.querySelector('audio.music-player')
+      const songClip = button[i].getAttribute('data-songUrl')
+      const transferClip = audioControls.setAttribute('src', songClip)
+
+      const songTitle = document.querySelector('h2.songTitle')
+      const songName = this.innerHTML
+      songTitle.innerHTML = songName
+    }
+  } //end onclick fn
+
   })
-
-
 }; //end onsumbit fn
 
 
-
-
-
-// ---------------- fin ---------------------//
+// ---------------- fin ------------------

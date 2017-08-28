@@ -2,20 +2,8 @@ body {
   background-image: url('http://data.whicdn.com/images/241498849/large.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #fff;
 }
-/*eg*/
-/*@font-face {
-  font-family: digital-7;
-  src: url('digital-7/digital-7.ttf');
-  }
-  <style>
-@import url('https://fonts.googleapis.com/css?family=Black+Ops+One|Fascinate+Inline|Monoton|Special+Elite');
-</style>
-  font-family: 'Monoton', cursive;
-  font-family: 'Special Elite', cursive;
-  font-family: 'Black Ops One', cursive;
-  font-family: 'Fascinate Inline', cursive;*/
-/*http://data.whicdn.com/images/18514596/large.jpg*/
 @font-face {
   font-family: 'Monoton';
   src: url('Monoton/Monoton-Regular.ttf');
@@ -25,12 +13,13 @@ body {
   src: url('Special_Elite/SpecialElite.ttf');
 }
 .headerExpanded {
-  background-image: url('https://ak5.picdn.net/shutterstock/videos/7969927/thumb/1.jpg'); background-size: cover;
+  background-image: url('https://ak5.picdn.net/shutterstock/videos/7969927/thumb/1.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
   opacity: .95;
-  width: 90%;
-  margin: 2em auto;
+  width: 100%;
+  margin: 1em auto;
   min-height: 25em;
   display: flex;
   justify-content: space-between;
@@ -40,11 +29,24 @@ body {
 h1 {
   font-family: 'Monoton', cursive;
   font-size: 4em;
+  text-align: center;
   margin-top: 0;
 }
-audio {
+
+/*===== MUSIC PLAYER SECTION =====*/
+audio.music-player {
   width: 35em;
   opacity: 1;
+}
+h2.songTitle {
+  font-family: 'Special Elite';
+  color: #fff;
+  background-color: #000;
+  font-weight: 700;
+  text-align: center;
+  margin-left: .5em;
+  margin-right: .5em;
+  padding: .5em;
 }
 .search-form {
   display: flex;
@@ -74,7 +76,7 @@ input[type=submit] {
     margin-top: .5em;
 }
 input[type=submit]:hover {
-  background-color: #gray:
+  background-color: gray;
 }
 input[type=submit]:active {
   background-color: #000;
@@ -83,3 +85,61 @@ input[type=submit]:active {
 input[type=submit]:focus {
   outline-style: none;
 }
+
+/*===== BUTTON - SONG =====*/
+button[type=submit] {
+    padding:1em 1em;
+    background:#fff;
+    border: 0;
+    cursor:pointer;
+    font-family: 'Special Elite';
+    font-size: 1em;
+    border-radius: 5px;
+    margin-top: .5em;
+}
+button[type=submit]:hover {
+  background-color: gray;
+}
+button[type=submit]:active {
+  background-color: #000;
+  color: #fff;
+}
+button[type=submit]:focus {
+  outline-style: none;
+}
+
+/*===== MAIN - RESULTS SECTION =====*/
+.artistResult {
+  width: 90%;
+  margin: .5em auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.song {
+  margin: .25em;
+  padding: .5em;
+  color: #000;
+  background-color: #fff;
+  opacity: .8;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  align-content: center;
+  width: 18%;
+}
+.song img {
+  margin-top: .5em;
+}
+.song h5 {
+  margin: .5em auto;
+  padding-top: .75em;
+}
+.song h4 {
+  margin: .5em auto;
+}
+.song a {
+  text-decoration: none;
+}
+
+/*---------------- fin -------------------*/
